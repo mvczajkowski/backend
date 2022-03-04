@@ -145,7 +145,7 @@ input[type="reset"] {
     width: max-content;
     font-size: 15px;
     font-weight: bold;
-    box-shadow: 0 0 4px gray;
+    box-shadow: 0 0 2px gray;
     border-radius: 5px;
     border: none;
     max-height: 37px;
@@ -198,7 +198,6 @@ table {
     margin: 5px 0 5px 0;
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 0 4px gray;
 }
 
 table th {

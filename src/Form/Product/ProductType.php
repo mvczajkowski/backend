@@ -34,7 +34,7 @@ class ProductType extends AbstractType
             },
             function ($publicDateAsString) {
                 // transform the string back to an array
-                return new \DateTime($publicDateAsString);
+                return \DateTime::createFromFormat('d/m/Y', $publicDateAsString);
             }
         ));
     }
