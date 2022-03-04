@@ -1,0 +1,87 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+        {% if edit %}
+            <div class="page-button-container">
+                <a href="{{ path('like_delete', {person: personProductLike.person.id, product: personProductLike.product.id}) }}" class="button button-danger float-right">
+                    <i class="fas fa-times"></i>
+                    Usuń
+                </a>
+            </div>
+            <div class="current-like">
+                <div class="edited-person">
+                    Obecny użytkownik:<br/>
+                    <span class="value">{{ personProductLike.person.fName }} {{ personProductLike.person.lName }} ({{ personProductLike.person.login }})</span>
+                </div>
+                <div class="edited-product">
+                    Obecny produkt:<br/>
+                    <span class="value">{{ personProductLike.product.name }}</span>
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-control">
+            <div class="custom-input">
+                <select id="person-select"></select>
+                <label for="person-select">Użytkownik</label>
+            </div>
+            <div class="custom-input">
+                <select id="product-select"></select>
+                <label for="product-select">Produkt</label>
+            </div>
+        </div>
+        {{ form_start(form) }}
+        <div class="page-button-container">
+            <a href="{{ path('like_list') }}" class="button button-secondary float-left">
+                <i class="fas fa-arrow-left"></i>
+                Wróć
+            </a>
+            <button type="submit" class="button button-primary float-right">
+                <i class="fas fa-check"></i>
+                Zapisz
+            </button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $('#person-select').select2({
+        ajax: {
+            url: "{{ path('like_person_ajax') }}",
+            dataType: 'json',
+            delay: 500,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function(obj) {
+                        return { id: obj.id, text: obj.name };
+                    })
+                };
+            }
+        }
+    });
+
+    $('#product-select').select2({
+        ajax: {
+            url: "{{ path('like_product_ajax') }}",
+            dataType: 'json',
+            delay: 500,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function(obj) {
+                        return { id: obj.id, text: obj.name };
+                    })
+                };
+            }
+        }
+    });
+
+    $('#person-select').change(function () {
+        $('#person_product_like_personId').val($('#person-select').val());
+    });
+
+    $('#product-select').change(function () {
+        $('#person_product_like_productId').val($('#product-select').val());
+    });
+</script>
+{% endblock %}

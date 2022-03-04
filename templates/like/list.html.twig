@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="page-button-container">
+        <a href="{{ path('like_add') }}" class="button button-primary float-right">
+            <i class="fas fa-plus"></i>
+            Nowe polubienie
+        </a>
+    </div>
+    {{ form_start(filterForm) }}
+        <div class="filters two-filters">
+            <div class="custom-input">
+                {{ form_widget(filterForm.person) }}
+                {{ form_label(filterForm.person) }}
+            </div>
+            <div class="custom-input">
+                {{ form_widget(filterForm.product) }}
+                {{ form_label(filterForm.product) }}
+            </div>
+            <button type="submit" class="button button-primary">
+                <i class="fas fa-magnifying-glass"></i>
+                Filtruj
+            </button>
+        </div>
+    {{ form_end(filterForm) }}
+    <table>
+        <thead>
+            <tr>
+                <th>Użytkownik</th>
+                <th>Produkt</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for personProductLike in personProductLikes %}
+                <tr>
+                    <td>{{ personProductLike.person.fName }} {{ personProductLike.person.lName }} ({{ personProductLike.person.login }})</td>
+                    <td>{{ personProductLike.product.name }}</td>
+                    <td>
+                        <a href="{{ path('like_edit', {person: personProductLike.person.id, product: personProductLike.product.id}) }}" class="button button-primary">
+                            <i class="fas fa-edit"></i>
+                            Edytuj
+                        </a>
+                        <a href="{{ path('like_delete', {person: personProductLike.person.id, product: personProductLike.product.id}) }}" class="button button-danger">
+                            <i class="fas fa-times"></i>
+                            Usuń
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

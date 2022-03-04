@@ -62,4 +62,20 @@ class PersonRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findPeopleForLikeSelect(string $query): array
+    {
+        $qb = $this->createQueryBuilder('pe');
+
+        return $qb
+            ->where('
+                pe.fName LIKE :query
+                OR pe.lName LIKE :query
+                OR pe.login LIKE :query
+            ')
+            ->setParameter('query', "%" . $query . "%")
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
 }

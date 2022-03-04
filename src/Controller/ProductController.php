@@ -48,7 +48,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->add($form->getData());
 
-            $this->addFlash('success', "Pomyślnie dodano produkt!");
+            $this->addFlash('success', "Pomyślnie dodano produkt");
 
             return $this->redirectToRoute('product_list');
         }
@@ -70,9 +70,9 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productRepository->add($form->getData());
 
-            $this->addFlash('success', "Pomyślnie edytowano produkt!");
+            $this->addFlash('success', "Pomyślnie edytowano produkt");
 
-            return $this->redirectToRoute('user_list');
+            return $this->redirectToRoute('product_list');
         }
 
         return $this->render('product/form.html.twig', [
@@ -89,7 +89,7 @@ class ProductController extends AbstractController
     {
         $productRepository->remove($product);
 
-        $this->addFlash('success', "Pomyślnie usunięto produkt!");
+        $this->addFlash('success', "Pomyślnie usunięto produkt");
 
         return $this->redirectToRoute('product_list');
     }

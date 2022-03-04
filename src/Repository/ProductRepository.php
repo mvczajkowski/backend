@@ -60,4 +60,16 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findProductsForLikeSelect(string $query): array
+    {
+        $qb = $this->createQueryBuilder('pr');
+
+        return $qb
+            ->where('pr.name LIKE :query')
+            ->setParameter('query', "%" . $query . "%")
+            ->setMaxResults(20)
+            ->getQuery()
+            ->getResult();
+    }
 }

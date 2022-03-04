@@ -103,10 +103,19 @@ input[type="reset"] {
     width: 100%;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert.alert-success {
     border: 2px solid #5271FF;
     color: #5271FF;
     background-color: #DFE4FF;
-    margin-bottom: 20px;
+}
+
+.alert.alert-error {
+    border: 2px solid #DF1818;
+    color: #DF1818;
+    background-color: #EEC7C7;
 }
 
 .container {
@@ -189,6 +198,7 @@ table {
     margin: 5px 0 5px 0;
     width: 100%;
     border-collapse: collapse;
+    box-shadow: 0 0 4px gray;
 }
 
 table th {
@@ -281,11 +291,11 @@ table tbody tr:nth-child(2n) {
     justify-content: space-between;
 }
 
-.filters.user-filters .custom-input {
+.filters.three-filters .custom-input {
     width: 25%;
 }
 
-.filters.product-filters .custom-input {
+.filters.two-filters .custom-input {
     width: 40%;
 }
 
@@ -306,3 +316,27 @@ table tbody tr:nth-child(2n) {
 
 
 /*form css end*/
+
+
+/*like edited data css start*/
+
+.current-like {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-like .edited-person,
+.current-like .edited-product {
+    width: 45%;
+    font-weight: bold;
+    font-size: 18px;
+    color: #5271FF;
+}
+
+.current-like .edited-person .value,
+.current-like .edited-product .value {
+    font-size: 16px;
+}
+
+
+/*like edited data css end*/

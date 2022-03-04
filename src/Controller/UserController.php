@@ -31,7 +31,7 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/list.html.twig', [
-            'persons' => $personRepository->findFilteredPersonList($filter),
+            'people' => $personRepository->findFilteredPersonList($filter),
             'filterForm' => $filterForm->createView()
         ]);
     }
@@ -48,7 +48,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $personRepository->add($form->getData());
 
-            $this->addFlash('success', "Pomyślnie dodano użytkownika!");
+            $this->addFlash('success', "Pomyślnie dodano użytkownika");
 
             return $this->redirectToRoute('user_list');
         }
@@ -70,7 +70,7 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $personRepository->add($form->getData());
 
-            $this->addFlash('success', "Pomyślnie edytowano użytkownika!");
+            $this->addFlash('success', "Pomyślnie edytowano użytkownika");
 
             return $this->redirectToRoute('user_list');
         }
@@ -90,7 +90,7 @@ class UserController extends AbstractController
         $person->setState(Person::STATE_DELETED);
         $personRepository->add($person);
 
-        $this->addFlash('success', "Pomyślnie usunięto użytkownika!");
+        $this->addFlash('success', "Pomyślnie usunięto użytkownika");
 
         return $this->redirectToRoute('user_list');
     }
