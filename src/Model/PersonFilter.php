@@ -4,16 +4,7 @@ namespace App\Model;
 
 class PersonFilter
 {
-    // const STATE_ACTIVE = 1;
-    // const STATE_BANNED = 2;
-    // const STATE_DELETED = 3;
-
-    // const READABLE_STATES = [
-    //     1 => "Aktywny",
-    //     2 => "Zbanowany",
-    //     3 => "Usunięty"
-    // ];
-
+    
     private string $login = "";
     
     private string $lName = "";

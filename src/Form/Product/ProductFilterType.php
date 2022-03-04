@@ -11,12 +11,12 @@ class ProductFilterType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => "Imię",
+                'label' => "Nazwa",
                 'empty_data' => "",
                 'required' => false
             ])
             ->add('info', TextType::class, [
-                'label' => "Nazwisko",
+                'label' => "Opis",
                 'empty_data' => "",
                 'required' => false
             ])

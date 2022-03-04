@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="page-button-container">
+        <a href="{{ path('product_add') }}" class="button button-primary float-right">
+            <i class="fas fa-plus"></i>
+            Nowy produkt
+        </a>
+    </div>
+    {{ form_start(filterForm) }}
+        <div class="filters product-filters">
+            <div class="custom-input">
+                {{ form_widget(filterForm.name) }}
+                {{ form_label(filterForm.name) }}
+            </div>
+            <div class="custom-input">
+                {{ form_widget(filterForm.info) }}
+                {{ form_label(filterForm.info) }}
+            </div>
+            <button type="submit" class="button button-primary">
+                <i class="fas fa-magnifying-glass"></i>
+                Filtruj
+            </button>
+        </div>
+    {{ form_end(filterForm) }}
+    <table>
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Opis</th>
+                <th>Data opublikowania</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.info }}</td>
+                    <td>{{ product.publicDate|date('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ path('product_edit', {product: product.id}) }}" class="button button-primary">
+                            <i class="fas fa-edit"></i>
+                            Edytuj
+                        </a>
+                        <a href="{{ path('product_delete', {product: product.id}) }}" class="button button-danger">
+                            <i class="fas fa-times"></i>
+                            Usuń
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

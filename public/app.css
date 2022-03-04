@@ -239,12 +239,17 @@ table tbody tr:nth-child(2n) {
 }
 
 .custom-input input,
-.custom-input select {
+.custom-input select,
+.custom-input textarea {
     font-size: 15px;
     padding: 7px;
     border-radius: 5px;
     border: 3px solid #A0A0A0;
     outline: none;
+}
+
+.custom-input textarea {
+    width: 100%;
 }
 
 .custom-input label {
@@ -253,11 +258,15 @@ table tbody tr:nth-child(2n) {
     color: #A0A0A0;
 }
 
-.custom-input input:focus {
+.custom-input input:focus,
+.custom-input select:focus,
+.custom-input textarea:focus {
     border-color: #5271FF;
 }
 
-.custom-input input:focus+label {
+.custom-input input:focus+label,
+.custom-input select:focus+label,
+.custom-input textarea:focus+label {
     color: #5271FF;
 }
 
@@ -265,22 +274,26 @@ table tbody tr:nth-child(2n) {
 /*input css end*/
 
 
-/*person list css start*/
+/*filters css start*/
 
 .filters {
     display: flex;
     justify-content: space-between;
 }
 
-.filters .custom-input {
+.filters.user-filters .custom-input {
     width: 25%;
 }
 
+.filters.product-filters .custom-input {
+    width: 40%;
+}
 
-/*person list css end*/
+
+/*filters css end*/
 
 
-/*person form css start*/
+/*form css start*/
 
 .form-control {
     display: flex;
@@ -292,4 +305,4 @@ table tbody tr:nth-child(2n) {
 }
 
 
-/*person form css end*/
+/*form css end*/

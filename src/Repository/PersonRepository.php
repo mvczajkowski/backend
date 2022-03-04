@@ -46,7 +46,7 @@ class PersonRepository extends ServiceEntityRepository
         }
     }
 
-    public function findFilteredPersonList(PersonFilter $personFilter)
+    public function findFilteredPersonList(PersonFilter $personFilter): array
     {
         $qb = $this->createQueryBuilder('pe');
 

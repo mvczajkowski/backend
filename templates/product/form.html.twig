@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {% if edit %}
+            <div class="page-button-container">
+                <a href="{{ path('product_delete', {product: product.id}) }}" class="button button-danger float-right">
+                    <i class="fas fa-times"></i>
+                    Usuń
+                </a>
+            </div>
+        {% endif %}
+        <div class="form-control">
+            <div class="custom-input">
+                {{ form_widget(form.name) }}
+                {{ form_label(form.name) }}
+            </div>
+            <div class="custom-input">
+                {{ form_widget(form.publicDate) }}
+                {{ form_label(form.publicDate) }}
+            </div>
+        </div>
+        <div class="custom-input">
+            {{ form_widget(form.info) }}
+            {{ form_label(form.info) }}
+        </div>
+        <div class="page-button-container">
+            <a href="{{ path('product_list') }}" class="button button-secondary float-left">
+                <i class="fas fa-arrow-left"></i>
+                Wróć
+            </a>
+            <button type="submit" class="button button-primary float-right">
+                <i class="fas fa-check"></i>
+                Zapisz
+            </button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$('#product_publicDate').datepicker();
+    $('#product_publicDate').datepicker("option", "dateFormat", "dd/mm/yy");
+</script>
+{% endblock %}
