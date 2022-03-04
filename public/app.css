@@ -15,6 +15,31 @@ a {
     text-decoration: none;
 }
 
+button,
+input[type="submit"],
+input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.page-button-container {
+    width: 100%;
+    height: 50px;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
 
 /*global css end*/
 
@@ -44,7 +69,8 @@ a {
     width: 100%;
 }
 
-.menu .links a:hover {
+.menu .links a:hover,
+.menu .links a.current {
     background-color: #3859EC;
 }
 
@@ -71,6 +97,16 @@ a {
     background-color: #343434;
     height: 50px;
     width: 100%;
+}
+
+.alert {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #5271FF;
+    color: #5271FF;
+    background-color: #DFE4FF;
+    margin-bottom: 20px;
 }
 
 .container {
@@ -102,6 +138,9 @@ a {
     font-weight: bold;
     box-shadow: 0 0 4px gray;
     border-radius: 5px;
+    border: none;
+    max-height: 37px;
+    align-self: flex-end;
 }
 
 .button.button-primary {
@@ -199,9 +238,10 @@ table tbody tr:nth-child(2n) {
     flex-direction: column-reverse;
 }
 
-.custom-input input {
+.custom-input input,
+.custom-input select {
     font-size: 15px;
-    padding: 10px;
+    padding: 7px;
     border-radius: 5px;
     border: 3px solid #A0A0A0;
     outline: none;
@@ -223,3 +263,33 @@ table tbody tr:nth-child(2n) {
 
 
 /*input css end*/
+
+
+/*person list css start*/
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.filters .custom-input {
+    width: 25%;
+}
+
+
+/*person list css end*/
+
+
+/*person form css start*/
+
+.form-control {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-control .custom-input {
+    width: 45%;
+}
+
+
+/*person form css end*/

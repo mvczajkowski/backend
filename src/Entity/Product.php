@@ -29,17 +29,17 @@ class Product
     private $info;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="public_date", type="date")
      */
-    private $public_date;
+    private $publicDate;
 
     /**
      * @ORM\OneToMany(targetEntity="PersonProductLike", mappedBy="product", cascade={"remove"})
      */
-    private $person_product_likes;
+    private $personProductLikes;
 
     public function __construct() {
-        $this->person_product_likes = new ArrayCollection();
+        $this->personProductLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -73,18 +73,18 @@ class Product
 
     public function getPublicDate(): ?\DateTimeInterface
     {
-        return $this->public_date;
+        return $this->publicDate;
     }
 
-    public function setPublicDate(\DateTimeInterface $public_date): self
+    public function setPublicDate(\DateTimeInterface $publicDate): self
     {
-        $this->public_date = $public_date;
+        $this->publicDate = $publicDate;
 
         return $this;
     }
 
     public function getPersonProductLikes(): ArrayCollection
     {
-        return $this->person_product_likes;
+        return $this->personProductLikes;
     }
 }

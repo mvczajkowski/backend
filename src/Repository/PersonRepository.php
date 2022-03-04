@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Person;
+use App\Model\PersonFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -45,32 +46,20 @@ class PersonRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Person[] Returns an array of Person objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findFilteredPersonList(PersonFilter $personFilter)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('pe');
 
-    /*
-    public function findOneBySomeField($value): ?Person
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+        return $qb
+            ->where('pe.login LIKE :login')
+            ->andWhere('pe.fName LIKE :fName')
+            ->andWhere('pe.lName LIKE :lName')
+            ->setParameters([
+                'login' => "%" . $personFilter->getLogin() . "%",
+                'fName' => "%" . $personFilter->getFName() . "%",
+                'lName' => "%" . $personFilter->getLname() . "%"
+            ])
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

@@ -14,23 +14,31 @@
         <div class="menu">
             <a class="homepage-link" href="{{ path('homepage')}}">App</a>
             <div class="links">
-                <a href="{{ path('person_list')}}">
+                <a href="{{ path('user_list')}}"
+                    {% if app.request.get('_route') starts with 'user' %}class="current"{% endif %}>
                     <i class="fas fa-users"></i>
-                    Lista użytkowników
+                    Użytkownicy
                 </a>
-                <a href="{{ path('product_list')}}">
+                <a href="{{ path('product_list')}}"
+                    {% if app.request.get('_route') starts with 'product' %}class="current"{% endif %}>
                     <i class="fas fa-boxes-stacked"></i>
-                    Lista produktów
+                    Produkty
                 </a>
-                <a href="{{ path('like_list')}}">
+                <a href="{{ path('like_list')}}"
+                    {% if app.request.get('_route') starts with 'like' %}class="current"{% endif %}>
                     <i class="fas fa-thumbs-up"></i>
-                    Lista polubień
+                    Polubienia
                 </a>
             </div>
         </div>
         <div class="content">
             <div class="topnav"></div>
             <div class="container">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                 <div class="card">
                     {% block body %}{% endblock %}
                 </div>

@@ -34,14 +34,14 @@ class Person
     private $login;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="l_name", type="string", length=100)
      */
-    private $l_name;
+    private $lName;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="f_name", type="string", length=100)
      */
-    private $f_name;
+    private $fName;
 
     /**
      * @ORM\Column(type="smallint")
@@ -51,7 +51,11 @@ class Person
     /**
      * @ORM\OneToMany(targetEntity="PersonProductLike", mappedBy="person")
      */
-    private $person_product_likes;
+    private $personProductLikes;
+
+    public function __construct() {
+        $this->personProductLikes = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -72,24 +76,24 @@ class Person
 
     public function getLName(): string
     {
-        return $this->l_name;
+        return $this->lName;
     }
 
-    public function setLName(string $l_name): self
+    public function setLName(string $lName): self
     {
-        $this->l_name = $l_name;
+        $this->lName = $lName;
 
         return $this;
     }
 
     public function getFName(): string
     {
-        return $this->f_name;
+        return $this->fName;
     }
 
-    public function setFName(string $f_name): self
+    public function setFName(string $fName): self
     {
-        $this->f_name = $f_name;
+        $this->fName = $fName;
 
         return $this;
     }
@@ -113,6 +117,6 @@ class Person
 
     public function getPersonProductLikes(): ArrayCollection
     {
-        return $this->person_product_likes;
+        return $this->personProductLikes;
     }
 }

@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {% if edit %}
+            <div class="page-button-container">
+                <a href="{{ path('user_delete', {person: person.id}) }}" class="button button-danger float-right">
+                    <i class="fas fa-times"></i>
+                    Usuń
+                </a>
+            </div>
+        {% endif %}
+        <div class="form-control">
+            <div class="custom-input">
+                {{ form_widget(form.fName) }}
+                {{ form_label(form.fName) }}
+            </div>
+            <div class="custom-input">
+                {{ form_widget(form.lName) }}
+                {{ form_label(form.lName) }}
+            </div>
+        </div>
+        <div class="form-control">
+            <div class="custom-input">
+                {{ form_widget(form.login) }}
+                {{ form_label(form.login) }}
+            </div>
+            <div class="custom-input">
+                {{ form_widget(form.state) }}
+                {{ form_label(form.state) }}
+            </div>
+        </div>
+        <div class="page-button-container">
+            <a href="{{ path('user_list') }}" class="button button-secondary float-left">
+                <i class="fas fa-arrow-left"></i>
+                Wróć
+            </a>
+            <button type="submit" class="button button-primary float-right">
+                <i class="fas fa-check"></i>
+                Zapisz
+            </button>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
