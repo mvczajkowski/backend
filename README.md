@@ -21,6 +21,7 @@ To install project you need to use
 
 Before using application database URL should be configured like below:
 `DATABASE_URL="mysql://db_user:db_password@db_address:db_port/db_name?serverVersion=5.7`
+
 It's good to have that in env file separate from project's `.env` file that od ignored by git like `.env.local`.
 
 After that application should be working.
