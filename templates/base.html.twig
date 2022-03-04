@@ -5,14 +5,29 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('app.css')}}"/>
-        {% endblock %}
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="{{ asset('app.css')}}"/>
+        {% block stylesheets %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        <div class="menu"></div>
+        <div class="menu">
+            <a class="homepage-link" href="{{ path('homepage')}}">App</a>
+            <div class="links">
+                <a href="{{ path('person_list')}}">
+                    <i class="fas fa-users"></i>
+                    Lista użytkowników
+                </a>
+                <a href="{{ path('product_list')}}">
+                    <i class="fas fa-boxes-stacked"></i>
+                    Lista produktów
+                </a>
+                <a href="{{ path('like_list')}}">
+                    <i class="fas fa-thumbs-up"></i>
+                    Lista polubień
+                </a>
+            </div>
+        </div>
         <div class="content">
             <div class="topnav"></div>
             <div class="container">

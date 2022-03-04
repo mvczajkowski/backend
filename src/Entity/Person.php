@@ -11,6 +11,16 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Person
 {
+    const STATE_ACTIVE = 1;
+    const STATE_BANNED = 2;
+    const STATE_DELETED = 3;
+
+    const READABLE_STATES = [
+        1 => "Aktywny",
+        2 => "Zbanowany",
+        3 => "Usunięty"
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -39,16 +49,16 @@ class Person
     private $state;
 
     /**
-     * @OneToMany(targetEntity="PersonProductLike", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="PersonProductLike", mappedBy="person")
      */
     private $person_product_likes;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getLogin(): ?string
+    public function getLogin(): string
     {
         return $this->login;
     }
@@ -60,7 +70,7 @@ class Person
         return $this;
     }
 
-    public function getLName(): ?string
+    public function getLName(): string
     {
         return $this->l_name;
     }
@@ -72,7 +82,7 @@ class Person
         return $this;
     }
 
-    public function getFName(): ?string
+    public function getFName(): string
     {
         return $this->f_name;
     }
@@ -84,9 +94,14 @@ class Person
         return $this;
     }
 
-    public function getState(): ?int
+    public function getState(): int
     {
         return $this->state;
+    }
+
+    public function getReadableState(): string
+    {
+        return self::READABLE_STATES[$this->state];
     }
 
     public function setState(int $state): self

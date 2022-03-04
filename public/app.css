@@ -1,6 +1,25 @@
+/*global css start*/
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0 auto;
+    font-family: sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
+
+/*global css end*/
+
+
+/*menu css start*/
 
 .menu {
     background-color: #5271FF;
@@ -8,6 +27,40 @@ body {
     height: 100vh;
     float: left;
 }
+
+.menu .homepage-link {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    height: 50px;
+    display: block;
+    padding-top: 10px;
+}
+
+.menu .links a {
+    display: block;
+    padding: 15px;
+    width: 100%;
+}
+
+.menu .links a:hover {
+    background-color: #3859EC;
+}
+
+.menu .links a:active {
+    background-color: #2F4CD1;
+}
+
+.menu .links a {
+    color: white;
+}
+
+
+/*menu css end*/
+
+
+/*page css start*/
 
 .content {
     float: left;
@@ -23,12 +76,150 @@ body {
 .container {
     background-color: lightgray;
     padding: 50px;
-    height: calc(100% - 50px);
-    box-sizing: border-box;
+    height: calc(100vh - 50px);
 }
 
 .card {
     background-color: white;
     box-shadow: 0 0 10px gray;
     border-radius: 5px;
+    padding: 15px;
 }
+
+
+/*page css end*/
+
+
+/*button css start*/
+
+.button {
+    margin: 5px 0 5px 0;
+    display: inline-block;
+    color: white;
+    padding: 10px;
+    width: max-content;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 0 4px gray;
+    border-radius: 5px;
+}
+
+.button.button-primary {
+    background-color: #5271FF;
+}
+
+.button.button-primary:hover {
+    background-color: #3859EC;
+}
+
+.button.button-primary:active {
+    background-color: #2F4CD1;
+}
+
+.button.button-secondary {
+    background-color: #A0A0A0;
+}
+
+.button.button-secondary:hover {
+    background-color: #909090;
+}
+
+.button.button-secondary:active {
+    background-color: #808080;
+}
+
+.button.button-danger {
+    background-color: #DF1818;
+}
+
+.button.button-danger:hover {
+    background-color: #CA1818;
+}
+
+.button.button-danger:active {
+    background-color: #B01818;
+}
+
+
+/*button css end*/
+
+
+/*table css start*/
+
+table {
+    margin: 5px 0 5px 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th {
+    background-color: #5271FF;
+    color: white;
+    padding: 10px;
+}
+
+table td {
+    padding: 5px;
+    text-align: center;
+}
+
+table thead tr th:first-child {
+    border-radius: 5px 0 0 0;
+}
+
+table thead tr th:last-child {
+    border-radius: 0 5px 0 0;
+}
+
+table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+}
+
+table tbody tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+
+table tbody tr {
+    background-color: #EEEEEE;
+}
+
+table tbody tr:nth-child(2n) {
+    background-color: #DDDDDD;
+}
+
+
+/*table css end*/
+
+
+/*input css start*/
+
+.custom-input {
+    margin: 5px 0 5px 0;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.custom-input input {
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 3px solid #A0A0A0;
+    outline: none;
+}
+
+.custom-input label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #A0A0A0;
+}
+
+.custom-input input:focus {
+    border-color: #5271FF;
+}
+
+.custom-input input:focus+label {
+    color: #5271FF;
+}
+
+
+/*input css end*/

@@ -12,15 +12,15 @@ class PersonProductLike
 {
     /**
      * @ORM\Id
-     * @ManyToOne(targetEntity="Person", inversedBy="person_product_likes")
-     * @JoinColumn(name="person_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="person_product_likes")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
     private Person $person;
 
     /**
      * @ORM\Id
-     * @ManyToOne(targetEntity="Product", inversedBy="person_product_likes")
-     * @JoinColumn(name="product_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="person_product_likes")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     private Product $product;
 

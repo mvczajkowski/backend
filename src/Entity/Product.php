@@ -34,7 +34,7 @@ class Product
     private $public_date;
 
     /**
-     * @OneToMany(targetEntity="PersonProductLike", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="PersonProductLike", mappedBy="product", cascade={"remove"})
      */
     private $person_product_likes;
 
