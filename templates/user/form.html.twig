@@ -2,7 +2,7 @@
 
 {% block body %}
     {{ form_start(form) }}
-        {% if edit %}
+        {% if edit and person.state is not same as constant("STATE_DELETED", person) %}
             <div class="page-button-container">
                 <a href="{{ path('user_delete', {person: person.id}) }}" class="button button-danger float-right">
                     <i class="fas fa-times"></i>

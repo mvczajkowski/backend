@@ -7,6 +7,7 @@ use App\Model\PersonProductLike\PersonProductLikeFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -46,9 +47,14 @@ class PersonProductLikeRepository extends ServiceEntityRepository
         }
     }
 
-    public function findFilteredPersonProductLikeList(PersonProductLikeFilter $personProductLikeFilter): array
+    public function findFilteredPersonProductLikeListQuery(PersonProductLikeFilter $personProductLikeFilter): Query
     {
         $qb = $this->createQueryBuilder('ppl');
+
+        $count = $this->_em
+            ->createQuery('SELECT COUNT(ppl.person) FROM App\Entity\PersonProductLike ppl')
+            ->getSingleScalarResult();
+
 
         return $qb
             ->join('ppl.person', 'pe')
@@ -64,6 +70,6 @@ class PersonProductLikeRepository extends ServiceEntityRepository
                 'product' => "%" . $personProductLikeFilter->getProduct() . "%"
             ])
             ->getQuery()
-            ->getResult();
+            ->setHint('knp_paginator.count', $count);
     }
 }

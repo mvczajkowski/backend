@@ -283,6 +283,16 @@ table tbody tr:nth-child(2n) {
 /*input css end*/
 
 
+/* select2 size tweaks start*/
+
+.select2-container {
+    max-width: 100%;
+}
+
+
+/*select2 size tweaks end*/
+
+
 /*filters css start*/
 
 .filters {
@@ -290,8 +300,8 @@ table tbody tr:nth-child(2n) {
     justify-content: space-between;
 }
 
-.filters.three-filters .custom-input {
-    width: 25%;
+.filters.four-filters .custom-input {
+    width: 20%;
 }
 
 .filters.two-filters .custom-input {
@@ -339,3 +349,35 @@ table tbody tr:nth-child(2n) {
 
 
 /*like edited data css end*/
+
+
+/*knp pagination start*/
+
+.pagination span.current,
+.pagination span a {
+    color: white;
+    display: inline-block;
+    border-radius: 100%;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 15px;
+    width: 30px;
+    height: 30px;
+}
+
+.pagination span a {
+    background-color: #5271FF;
+}
+
+.pagination span a:hover {
+    background-color: #3859EC;
+}
+
+.pagination span a:active,
+.pagination span.current {
+    background-color: #2F4CD1;
+}
+
+
+/*knp pagination end*/

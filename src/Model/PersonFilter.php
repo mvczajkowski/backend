@@ -11,6 +11,8 @@ class PersonFilter
 
     private string $fName = "";
 
+    private int $state = 0;
+
     public function getLogin(): string
     {
         return $this->login;
@@ -43,6 +45,18 @@ class PersonFilter
     public function setFName(string $fName): self
     {
         $this->fName = $fName;
+
+        return $this;
+    }
+
+    public function getState(): int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

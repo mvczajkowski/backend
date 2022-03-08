@@ -15,6 +15,8 @@ use App\Model\PersonProductLike\PersonProductLikeFilter;
 use App\Model\PersonProductLike\PersonProductLikeModel;
 use App\Repository\PersonProductLikeRepository;
 use App\Service\LikeService;
+use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/like")
@@ -24,7 +26,7 @@ class LikeController extends AbstractController
     /**
      * @Route("/list", name="like_list")
      */
-    public function likeList(Request $request, PersonProductLikeRepository $personProductLikeRepository): Response
+    public function likeList(Request $request, PersonProductLikeRepository $personProductLikeRepository, PaginatorInterface $paginator): Response
     {
         $filter = new PersonProductLikeFilter();
         $filterForm = $this->createForm(PersonProductLikeFilterType::class, $filter);
@@ -34,8 +36,15 @@ class LikeController extends AbstractController
             $filter = $filterForm->getData();
         }
 
+        $personProductLikes = $paginator->paginate(
+            $personProductLikeRepository->findFilteredPersonProductLikeListQuery($filter),
+            $request->query->getInt('page', 1),
+            20,
+            [Paginator::DISTINCT => false]
+        );
+
         return $this->render('like/list.html.twig', [
-            'personProductLikes' => $personProductLikeRepository->findFilteredPersonProductLikeList($filter),
+            'personProductLikes' => $personProductLikes,
             'filterForm' => $filterForm->createView()
         ]);
     }
@@ -103,7 +112,7 @@ class LikeController extends AbstractController
      */
     public function personAjax(Request $request, LikeService $likeService): Response
     {
-        return new JsonResponse($likeService->getPeopleForLikeSelect($request->query->get('term')));
+        return new JsonResponse($likeService->getPeopleForLikeSelect($request->query->get('term') ?? ""));
     }
 
     /**
@@ -111,7 +120,7 @@ class LikeController extends AbstractController
      */
     public function productAjax(Request $request, LikeService $likeService): Response
     {
-        return new JsonResponse($likeService->getProductsForLikeSelect($request->query->get('term')));
+        return new JsonResponse($likeService->getProductsForLikeSelect($request->query->get('term') ?? ""));
     }
 
     /**

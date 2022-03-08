@@ -7,6 +7,7 @@ use App\Model\ProductFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -46,7 +47,7 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-    public function findFilteredProductList(ProductFilter $productFilter): array
+    public function findFilteredProductListQuery(ProductFilter $productFilter): Query
     {
         $qb = $this->createQueryBuilder('pr');
 
@@ -57,8 +58,7 @@ class ProductRepository extends ServiceEntityRepository
                 'name' => "%" . $productFilter->getName() . "%",
                 'info' => "%" . $productFilter->getInfo() . "%"
             ])
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
 
     public function findProductsForLikeSelect(string $query): array

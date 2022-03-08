@@ -11,6 +11,7 @@ use App\Form\Product\ProductFilterType;
 use App\Form\Product\ProductType;
 use App\Model\ProductFilter;
 use App\Repository\ProductRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/product")
@@ -20,7 +21,7 @@ class ProductController extends AbstractController
     /**
      * @Route("/list", name="product_list")
      */
-    public function productList(Request $request, ProductRepository $productRepository): Response
+    public function productList(Request $request, ProductRepository $productRepository, PaginatorInterface $paginator): Response
     {
         $filter = new ProductFilter();
         $filterForm = $this->createForm(ProductFilterType::class, $filter);
@@ -30,8 +31,14 @@ class ProductController extends AbstractController
             $filter = $filterForm->getData();
         }
 
+        $products = $paginator->paginate(
+            $productRepository->findFilteredProductListQuery($filter),
+            $request->query->getInt('page', 1),
+            20
+        );
+
         return $this->render('product/list.html.twig', [
-            'products' => $productRepository->findFilteredProductList($filter),
+            'products' => $products,
             'filterForm' => $filterForm->createView()
         ]);
     }

@@ -11,6 +11,7 @@ use App\Form\Person\PersonFilterType;
 use App\Form\Person\PersonType;
 use App\Model\PersonFilter;
 use App\Repository\PersonRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/user")
@@ -20,7 +21,7 @@ class UserController extends AbstractController
     /**
      * @Route("/list", name="user_list")
      */
-    public function userList(Request $request, PersonRepository $personRepository): Response
+    public function userList(Request $request, PersonRepository $personRepository, PaginatorInterface $paginator): Response
     {
         $filter = new PersonFilter();
         $filterForm = $this->createForm(PersonFilterType::class, $filter);
@@ -30,8 +31,14 @@ class UserController extends AbstractController
             $filter = $filterForm->getData();
         }
 
+        $people = $paginator->paginate(
+            $personRepository->findFilteredPersonListQuery($filter),
+            $request->query->getInt('page', 1),
+            20
+        );
+
         return $this->render('user/list.html.twig', [
-            'people' => $personRepository->findFilteredPersonList($filter),
+            'people' => $people,
             'filterForm' => $filterForm->createView()
         ]);
     }

@@ -7,6 +7,7 @@ use App\Model\PersonFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -46,11 +47,11 @@ class PersonRepository extends ServiceEntityRepository
         }
     }
 
-    public function findFilteredPersonList(PersonFilter $personFilter): array
+    public function findFilteredPersonListQuery(PersonFilter $personFilter): Query
     {
         $qb = $this->createQueryBuilder('pe');
 
-        return $qb
+        $qb
             ->where('pe.login LIKE :login')
             ->andWhere('pe.fName LIKE :fName')
             ->andWhere('pe.lName LIKE :lName')
@@ -58,9 +59,15 @@ class PersonRepository extends ServiceEntityRepository
                 'login' => "%" . $personFilter->getLogin() . "%",
                 'fName' => "%" . $personFilter->getFName() . "%",
                 'lName' => "%" . $personFilter->getLname() . "%"
-            ])
-            ->getQuery()
-            ->getResult();
+            ]);
+
+        if ($personFilter->getState() !== 0) {
+            $qb
+                ->andWhere('pe.state = :state')
+                ->setParameter('state', $personFilter->getState());
+        }
+
+        return $qb->getQuery();
     }
 
     public function findPeopleForLikeSelect(string $query): array
